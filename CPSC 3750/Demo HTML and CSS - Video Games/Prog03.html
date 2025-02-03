@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Games - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+    </script>
+</head>
+<body>
+    <header id = "top">
+        <h1>Welcome to My Video Games Hobby Page</h1>
+        <nav>
+            <div id = "navbar"></div>
+        </nav>
+    </header>
+    <main>
+        <section id ="what-are-video-games">
+            <header>
+                <h2>What are Video Games?</h2>
+            </header>
+            <div class ="image-gallery">
+                <img src="images/consoles.jpg" alt="Video Games" class="game-image">
+                <img src="images/minecraft.jpg" alt="Video Games" class="game-image">
+                <img src="images/cod.jpg" alt="Video Games" class="game-image">
+                <img src="images/fortnite.jpg" alt="Video Games" class="game-image">
+            </div>
+            <p>Video games are a form of interactive entertainment enjoyed by millions worldwide. They range from simple puzzles to complex, story-driven adventures.</p>
+            <h3>Why Are Video Games Popular?</h3>
+            <ul>
+                <li><strong>Entertainment:</strong> They provide fun and relaxation for people of all ages.</li>
+                <li><strong>Social Connection:</strong> Multiplayer games allow players to connect with friends and strangers from across the globe.</li>
+                <li><strong>Learning:</strong> Educational games teach skills, from math and science to critical thinking and teamwork.</li>
+                <li><strong>Immersion:</strong> Advanced graphics and storytelling let players dive into imaginative worlds.</li>
+            </ul>
+            <h3>Genres of Video Games</h3>
+            <p>Video games come in a variety of genres, catering to different preferences and playstyles. Some popular genres include:</p>
+            <ol>
+                <li><strong>Action:</strong> Fast-paced gameplay that emphasizes combat and reflexes (e.g., <em>Call of Duty</em>).</li>
+                <li><strong>Role-Playing Games (RPGs):</strong> Story-driven games where players develop characters and complete quests (e.g., <em>The Elder Scrolls V: Skyrim</em>).</li>
+                <li><strong>Simulation:</strong> Games that mimic real-world activities, such as farming or city-building (e.g., <em>Stardew Valley</em>, <em>The Sims</em>).</li>
+                <li><strong>Sports:</strong> Games that recreate real or fictional sports (e.g., <em>FIFA</em>, <em>NBA 2K</em>).</li>
+                <li><strong>Puzzle:</strong> Games that test problem-solving skills (e.g., <em>Tetris</em>, <em>Portal</em>).</li>
+                <li><strong>Adventure:</strong> Exploration-focused games that emphasize story and discovery (e.g., <em>The Legend of Zelda</em>).</li>
+            </ol>
+            <footer class = "section-footer">
+                <p>Last Updated: January 2025</p>
+            </footer>
+            <br>
+        </section>
+        <aside>
+            <h2>Fun Fact:</h2>
+            <p>Did you know? The video game industry generates around $200-plus billion globally. That is larger than  the film, television and music industries combined!</p>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2025 My Video Games Hobby Page</p>
+        <p><a href = #top>Return to Top</a>.</p>
+        <p>Connect with me: <a href="mailto:yourname@example.com">Email</a></p>
+    </footer>
+</body>
+</html>

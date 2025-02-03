@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group CSS Assignment</title>
+    <style>
+        /* Comments */
+        /* This file demonstrates CSS properties based on the 1-12 from W3 schools*/
+
+        /* Colors */
+        .background-color {
+            background-color: lightblue;
+        }
+        .text-color {
+            color: yellow;
+        }
+        .border-color {
+            border: 3px solid red;
+        }
+
+
+        /* Backgrounds */
+        .background-color-example {
+            background-color: lightcoral;
+        }
+        .background-image {
+            background-image: url('forest.jpg'); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 150px;
+            color:white
+        }
+        .background-repeat {
+            background-image: url('ocean.jpg');
+            background-repeat: repeat;
+            height: 100px;
+        }
+        .background-attachment {
+            background-image: url('scroll.jpg');
+            background-attachment: fixed;
+            height: 150px;
+        }
+
+        /* Borders */
+        .border-style {
+            border: 2px dashed black;
+        }
+        .border-width {
+            border: 5px solid green;
+        }
+        .border-color-example {
+            border: 2px solid blue;
+        }
+        .border-sides {
+            border-top: 3px solid orange;
+            border-right: 3px dotted purple;
+        }
+        .border-rounded {
+            border: 3px solid pink;
+            border-radius: 15px;
+        }
+
+        /* Margins and Padding */
+        .margin-example {
+            margin: 20px;
+            background-color: lightgray;
+        }
+        .padding-example {
+            padding: 20px;
+            background-color: lightyellow;
+        }
+
+        /* Height and Width */
+        .height-example {
+            height: 150px;
+            background-color: lightgreen;
+        }
+        .width-example {
+            width: 200px;
+            background-color: lightblue;
+        }
+        /* ===== NAVBAR STYLES ===== */
+    .navbar {
+        background-color: #333;
+        padding: 10px;
+        width:100%
+    }
+
+    /* Navbar links and buttons */
+    .navbar a, .dropbtn {
+        color: white;
+        text-decoration: none;
+        padding: 14px 16px;
+        display: inline-block;
+        font-size: 16px;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+
+    /* Ensure dropdown works properly */
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    /* Make dropdown content visible on hover */
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        top: 100%; /* Ensures dropdown appears below the button */
+        left: 0;
+        background-color: #444;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+        z-index: 10; /* Ensure it appears above other elements */
+    }
+
+    /* Ensure dropdown expands properly */
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    /* Fix button spacing */
+    .dropbtn {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 14px 16px;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    /* Dropdown items */
+    .dropdown-content a {
+        display: block;
+        color: white;
+        padding: 12px 16px;
+        text-decoration: none;
+    }
+
+    /* Improve hover effect */
+    .dropdown-content a:hover {
+        background-color: #555;
+    }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+    </script>
+    </head>
+    <body>
+        <h1>Group CSS Assignment</h1>
+        <div id = "navbar"></div>
+        <p>This page demonstrates several CSS elements</p>
+        <!--Color Section-->
+        <section>
+            <h2>1. Colors</h2>
+            <div class = "background-color"><p>This div has a light blue background color</p></div>
+            <div class = "text-color"><p> This text is yellow</p></div>
+            <div class = "border-color"><p>This div's border color is red</p></div>
+        </section>
+
+        <!--Background Section-->
+        <section>
+            <h2>2. Background</h2>
+            <div class="background-color-example"><p>Background color example: light coral</p></div>
+            <div class="background-image"><p>Background image with no-repeat</p></div>
+            <div class="background-repeat"><p>Background image with repeat</p></div>
+            <div class="background-attachment"><p>Background image with fixed attachment</p></div>
+        </section>
+        
+        <!--Border Section-->
+        <section>
+            <h2>3. Borders</h2>
+            <div class="border-style"><p>Border style: dashed</p></div>
+            <div class="border-width"><p>Border width: 5px</p></div>
+            <div class="border-color-example"><p>Border color: blue</p></div>
+            <div class="border-sides"><p>Borders applied to specific sides</p></div>
+            <div class="border-rounded"><p>Rounded border corners</p></div>
+        </section>
+        <!--Margins and Padding Section-->
+        <section>
+            <h2>4. Margins and Padding</h2>
+            <div class="margin-example"><p>Margin example: 20px margin around this div</p></div>
+            <div class="padding-example"><p>Padding example: 20px padding inside this div</p></div>
+        </section>
+        <!--Height and Width Section-->
+        <section>  
+            <h2>5. Height and Width</h2>
+            <div class="height-example"><p>Height example: 150px tall</p></div>
+            <div class="width-example"><p>Width example: 200px wide</p></div>
+        </section>
+    </body>
+</html>

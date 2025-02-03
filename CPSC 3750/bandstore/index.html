@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Avenged Sevenfold</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                fetch('../navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+        </script>
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="store.html">STORE</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Avenged Sevenfold</h1>
+            <div class="container">
+                <button type="button" class="btn btn-header">Get our Latest Album</button>
+            </div>
+            <button type="button" class="btn btn-header btn-play">&#9658;</button>
+        </header>
+        <nav>
+            <div id = "navbar"></div>
+        </nav>
+        <section class="content-section container">
+            <h2 class="section-header">TOURS</h2>
+            <div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">Mar 29</span>
+                    <span class="tour-item tour-city">Chorrillos, Peru</span>
+                    <span class="tour-item tour-arena">Centro Cultural Deportivo Lima</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary">BUY TICKETS</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">June 12</span>
+                    <span class="tour-item tour-city">Interlaken, Switzerland</span>
+                    <span class="tour-item tour-arena">Backpackers Villa Sonnenhof</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary">BUY TICKETS</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">June 14</span>
+                    <span class="tour-item tour-city">Vienne, France</span>
+                    <span class="tour-item tour-arena">Vienne Ancient Roman Theatre</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary">BUY TICKETS</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">June 16</span>
+                    <span class="tour-item tour-city">Sesto San Giovanni, Italy</span>
+                    <span class="tour-item tour-arena">Carroponte</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary">BUY TICKETS</button>
+                </div>
+                <div class="tour-row">
+                    <span class="tour-item tour-date">June 18</span>
+                    <span class="tour-item tour-city">Ljubljana, Slovenia</span>
+                    <span class="tour-item tour-arena">Križanke</span>
+                    <button type="button" class="tour-item tour-btn btn btn-primary">BUY TICKETS</button>
+                </div>
+            </div>
+        </section>
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">Avenged Sevenfold</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.spotify.com" target="_blank">
+                            <img src="Images/Spotify Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

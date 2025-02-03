@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Favorite Video Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+    </script>
+</head>
+<body>
+    <header id = "#top">
+        <h1>My Favorite Video Games</h1>
+        <nav>
+            <div id = "navbar"></div>
+        </nav>
+    </header>
+    <main>
+        <!-- First-Person Shooters (FPS) -->
+        <section id="fps">
+            <header>
+                <h2>First-Person Shooters (FPS)</h2>
+            </header>
+            <p>FPS games focus on immersive gameplay from the first-person perspective. Here are my favorites:</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/codmwbo.jpg" alt="Call of Duty: MW to Black Ops 2">
+                    <h3>Call of Duty: MW to Black Ops 2</h3>
+                    <p>A series of legendary FPS games with intense campaigns and competitive multiplayer modes. I specifically grew up playing the OG Modern Warefare trilogy and then World at War and Black ops 1 and 2.</p>
+                </div>
+                <div class="game">
+                    <img src="images/halomcc.jpg" alt="Halo Series">
+                    <h3>Halo Series</h3>
+                    <p>A sci-fi FPS series with epic campaigns and groundbreaking multiplayer modes. I grew up with xboxs and so some of my best memories are playing the original halo trilogy with my brother.</p>
+                </div>
+                <div class="game">
+                    <img src="images/doom.jpg" alt="Doom 2016">
+                    <h3>Doom (2016)</h3>
+                    <p>An adrenaline-pumping shooter with fast-paced combat and iconic demons.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Third-Person Shooters -->
+        <section id="third-person-shooters">
+            <header>
+                <h2>Third-Person Shooters</h2>
+            </header>
+            <p>Third-person shooters combine action-packed combat with a cinematic perspective. Here are some of my favorites:</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/gears.jpg" alt="Gears of War">
+                    <h3>Gears of War</h3>
+                    <p>A thrilling shooter with tactical combat and a gripping narrative.</p>
+                </div>
+                <div class="game">
+                    <img src="images/reddead.jpg" alt="Red Dead Redemption 2">
+                    <h3>Red Dead Redemption 2</h3>
+                    <p>An open-world third-person shooter that captures the spirit of the Wild West. This game has one of the greatest most emotional stories ever told in gaming</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open-World Adventure -->
+        <section id="open-world-adventure">
+            <header>
+                <h2>Open-World/Action & Adventure</h2>
+            </header>
+            <p>Open-world games allow for exploration and discovery in expansive, immersive environments.</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/elder.jpg" alt="The Elder Scrolls IV: Oblivion and V: Skyrim">
+                    <h3>The Elder Scrolls IV: Oblivion & V: Skyrim</h3>
+                    <p>Massive RPGs with limitless exploration and countless quests. </p>
+                </div>
+                <div class="game">
+                    <img src="images/fallout.jpg" alt="Fallout 3 and New Vegas">
+                    <h3>Fallout 3 & New Vegas</h3>
+                    <p>Post-apocalyptic open-world RPGs filled with rich storytelling and exploration.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--Soulsborne-->
+        <section id="soulsborne">
+            <header>
+                <h2>Soulsborne Games</h2>
+            </header>
+            <p>Soulsborne games are known for their challenging combat, intricate level design, and deep lore. These games test patience, skill, and perseverance.</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/darksouls.jpg" alt="Dark Souls Series">
+                    <h3>Dark Souls Series</h3>
+                    <p>Renowned for its difficulty and intricate world-building, the Dark Souls trilogy is a modern classic.</p>
+                </div>
+                <div class="game">
+                    <img src="images/sekiro.jpg" alt="Sekiro: Shadows Die Twice">
+                    <h3>Sekiro: Shadows Die Twice</h3>
+                    <p>A samurai-inspired action-adventure game with precise combat mechanics and a stunning world.</p>
+                </div>
+                <div class="game">
+                    <img src="images/eldenrin.jpg" alt="Elden Ring">
+                    <h3>Elden Ring</h3>
+                    <p>An expansive open-world action RPG that combines the best elements of Soulsborne games with an epic narrative.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Survival Horror -->
+        <section id="survival-horror">
+            <header>
+                <h2>Survival Horror</h2>
+            </header>
+            <p>Survival horror games create tense atmospheres, blending action with suspense. Here are my favorites:</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/re.jpg" alt="Resident Evil">
+                    <h3>Resident Evil Series</h3>
+                    <p>Horror-action games blending tense survival gameplay with gripping stories. My favorities would have to be OG RE4, RE2 Remake, and RE7</p>
+                </div>
+                <div class="game">
+                    <img src="images/deadspace.jpg" alt="Dead Space">
+                    <h3>Dead Space</h3>
+                    <p>A sci-fi survival horror game with a haunting atmosphere and gripping gameplay.</p>
+                </div>
+                <div class="game">
+                    <img src="images/silenthill.jpg" alt="Silent Hill">
+                    <h3>Silent Hill</h3>
+                    <p>A horror classic known for its psychological storytelling and eerie atmosphere.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RPGs -->
+        <section id="rpg">
+            <header>
+                <h2>Role-Playing Games (RPGs)</h2>
+            </header>
+            <p>RPGs immerse players in expansive worlds with deep narratives and character progression. Here are my picks:</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/kotor.jpg" alt="Knights of the Old Republic">
+                    <h3>Star Wars: Knights of the Old Republic</h3>
+                    <p>An epic RPG set in the Star Wars universe, featuring deep lore and choices. Star wars is probably my favorite media franchise ever and this is my favorite game of all time.</p>
+                </div>
+                <div class="game">
+                    <img src="images/me.jpg" alt="Mass Effect Trilogy">
+                    <h3>Mass Effect Trilogy</h3>
+                    <p>An RPG where your decisions shape the fate of the galaxy. Has so many intriguing characters to get attached to.</p>
+                </div>
+                <div class="game">
+                    <img src="images/da.jpg" alt="Dragon Age Trilogy">
+                    <h3>Dragon Age Trilogy</h3>
+                    <p>A fantasy RPG series with rich characters and branching storylines. Another franchise with fascinating characters and companions to connect with.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Puzzle and Simulation -->
+        <section id="puzzle-simulation">
+            <header>
+                <h2>Puzzle and Simulation</h2>
+            </header>
+            <p>These games are relaxing and engaging, offering unique gameplay experiences:</p>
+            <div class="game-list">
+                <div class="game">
+                    <img src="images/stardew.jpg" alt="Stardew Valley">
+                    <h3>Stardew Valley</h3>
+                    <p>A farming simulation game with charming visuals and endless creativity.</p>
+                </div>
+                <div class="game">
+                    <img src="images/portal.jpg" alt="Portal">
+                    <h3>Portal</h3>
+                    <p>A clever puzzle game that challenges your mind with unique mechanics.</p>
+                </div>
+            </div>
+        </section>
+        <aside>
+            <h2>Fun Facts About Some of These Games</h2>
+            <ul>
+                <li><i>Mass Effect</i> was initially planned as an Xbox exclusive before being ported to other platforms.</li>
+                <li><i>Dark Souls</i> coined the term "You Died" and inspired an entire genre of challenging games.</li>
+                <li>The <i>Elder Scrolls V: Skyrim</i> has been ported to over 14 different platforms since its release in 2011.</li>
+                <li><i>Red Dead Redemption 2</i> took over 8 years to develop and has one of the largest open worlds ever created.</li>
+                <li><i>Portal</i> was originally a student project before becoming a critically acclaimed game by Valve.</li>
+            </ul>
+        </aside>
+    </main>
+    <footer>
+        <p>&copy; 2025 My Video Games Hobby Page</p>
+        <p><a href = #top>Return to Top</a>.</p>
+        <p>Connect with me: <a href="mailto:yourname@example.com">Email</a></p>
+    </footer>
+</body>
+</html>

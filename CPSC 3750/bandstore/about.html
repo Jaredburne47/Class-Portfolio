@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Avenged Sevenfold | About</title>
+        <meta name="description" content="This is the description">
+        <link rel="stylesheet" href="styles.css" />
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                fetch('../navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+        </script>
+    </head>
+    <body>
+        <header class="main-header">
+            <nav class="nav main-nav">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="store.html">STORE</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                </ul>
+            </nav>
+            <h1 class="band-name band-name-large">Avenged Sevenfold</h1>
+        </header>
+        <nav>
+            <div id = "navbar"></div>
+        </nav>
+        <section class="content-section container">
+            <h2 class="section-header">ABOUT</h2>
+            <img class="about-band-image" src="Images/A7XMembers.jpg">
+            <p>Avenged Sevenfold (A7X) is an American heavy metal band from Huntington Beach, California, formed in 1999. Known for their diverse sound and theatrical stage presence, the band has evolved from metalcore roots into a unique fusion of heavy metal, hard rock, and progressive elements.</p>
+            <p>With iconic albums like City of Evil (2005), Avenged Sevenfold (2007), and Nightmare (2010), they’ve produced hits such as "Bat Country," "Afterlife," "Nightmare," and "Hail to the King." Their music blends intricate guitar solos, powerful vocals, and deep lyrical themes covering life, death, and the human experience.</p>
+            <p>Avenged Sevenfold’s lineup includes vocalist M. Shadows, guitarists Synyster Gates and Zacky Vengeance, bassist Johnny Christ, and drummer Brooks Wackerman. The band's career has been marked by both triumph and tragedy, including the loss of original drummer Jimmy "The Rev" Sullivan in 2009, whose influence remains a vital part of their legacy.</p>
+            <p>Renowned for their electrifying live performances and genre-bending creativity, A7X continues to push musical boundaries and inspire fans worldwide.</p>
+        </section>
+
+        <footer class="main-footer">
+            <div class="container main-footer-container">
+                <h3 class="band-name">Avenged Sevenfold</h3>
+                <ul class="nav footer-nav">
+                    <li>
+                        <a href="https://www.youtube.com" target="_blank">
+                            <img src="Images/YouTube Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.spotify.com" target="_blank">
+                            <img src="Images/Spotify Logo.png">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.facebook.com" target="_blank">
+                            <img src="Images/Facebook Logo.png">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

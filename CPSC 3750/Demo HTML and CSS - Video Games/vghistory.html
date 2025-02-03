@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Games - History</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+    </script>
+</head>
+<body>
+    <header id = "top">
+        <h1>The History of Video Games</h1>
+        <nav>
+            <div id = "navbar"></div>
+        </nav>
+    </header>
+    <main>
+        <section id="early-days">
+            <header>
+                <h2>The Early Days</h2>
+            </header>
+            <div class ="image-gallery">
+                <img src="images/oxo.png" alt="Oxo" class="game-image">
+                <img src="images/tennis.jpg" alt="Tennis for Two" class="game-image">
+                <img src="images/spacewar.jpg" alt="Spacewar!" class="game-image">
+                <img src="images/brownbox.jpg" alt="The Brown Box" class="game-image">
+            </div>
+            <p>Video games have come a long way since their inception in the 1950s and 1960s. The earliest games, like <i>Tennis for Two</i> (1958) and <i>Spacewar!</i> (1962), were experimental and often played on large, room-sized computers.</p>
+            <ul>
+                <li><strong>1950:</strong> Claude Shannon wrote about programming a computer to play chess, laying the groundwork for games on computers.</li>
+                <li><strong>1952:</strong> <i>OXO</i> (or <i>Noughts and Crosses</i>) was created by Alexander S. Douglas as part of his PhD dissertation, one of the first graphical games.</li>
+                <li><strong>1958:</strong> <i>Tennis for Two</i>, created by William Higinbotham, was one of the first games to use a graphical display on an oscilloscope.</li>
+                <li><strong>1961:</strong> MIT students, including Steve Russell, developed <i>Spacewar!</i>, a combat game that introduced interactive gameplay and multiplayer combat.</li>
+                <li><strong>1966:</strong> Ralph Baer began work on "The Brown Box," the prototype for the first home video game console.</li>
+                <li><strong>1967:</strong> The first light gun game was created, a precursor to later shooting games.</li>
+                <li><strong>1971:</strong> <i>Computer Space</i>, inspired by <i>Spacewar!</i>, became the first commercially sold video game.</li>
+            </ul>
+            <footer class="section-footer">
+                <p>Sources: <a href="https://en.wikipedia.org/wiki/Early_history_of_video_games" target="_blank">Early History</a></p>
+                
+            </footer>
+        </section>
+
+        <section id="arcade-boom">
+            <header>
+                <h2>The Arcade Boom</h2>
+            </header>
+            <div class ="image-gallery">
+                <img src="images/pong.png" alt="Video Games" class="game-image">
+                <img src="images/pacman.jpg" alt="Video Games" class="game-image">
+                <img src="images/dk.jpg" alt="Video Games" class="game-image">
+                <img src="images/mk.jpg" alt="Video Games" class="game-image">
+            </div>
+            <p>The 1970s and 1980s marked the golden age of arcade games. Iconic titles like <i>Pong</i>, <i>Pac-Man</i>, and <i>Donkey Kong</i> became cultural phenomena, shaping the early gaming industry.</p>
+            <ul>
+                <li><strong>1971:</strong> <i>Computer Space</i>, created by Nolan Bushnell and Ted Dabney, became the first commercially available arcade video game.</li>
+                <li><strong>1972:</strong> Atari released <i>Pong</i>, a table tennis simulation game, which became a massive commercial success and solidified video games in popular culture.</li>
+                <li><strong>1978:</strong> <i>Space Invaders</i>, developed by Taito, introduced the concept of high scores and became a global sensation.</li>
+                <li><strong>1980:</strong> Namco released <i>Pac-Man</i>, which introduced one of the first gaming mascots and became an enduring cultural icon.</li>
+                <li><strong>1981:</strong> Nintendo released <i>Donkey Kong</i>, which featured the debut of Mario (then called Jumpman).</li>
+                <li><strong>1982:</strong> <i>Tron</i>, inspired by the Disney movie, showcased advanced graphics and became a cult favorite in the arcade gaming community.</li>
+                <li><strong>1983:</strong> The "arcade crash" began due to market oversaturation, but iconic games like <i>Dragon's Lair</i> used laserdisc technology to differentiate themselves.</li>
+            </ul>
+            <p>The arcade boom not only established video games as a mainstream entertainment medium but also laid the groundwork for future gaming trends, including competitive gaming and character branding.</p>
+            <footer class="section-footer">
+                <p>Sources: <a href="https://en.wikipedia.org/wiki/History_of_arcade_video_games" target="_blank">Arcade History</a></p>
+            </footer>
+            <aside>
+                <h2>Did You Know?</h2>
+                <p>The Nintendo Entertainment System (NES), released in 1985, is widely credited with reviving the video game industry after the 1983 crash.</p>
+            </aside>
+        </section>
+
+        
+        <section id="modern-era">
+            <header>
+                <h2>The Modern Era</h2>
+            </header>
+            <div class ="image-gallery">
+                <img src="images/mobile.jpg" alt="Video Games" class="game-image">
+                <img src="images/halo.jpg" alt="Video Games" class="game-image">
+                <img src="images/gta.jpg" alt="Video Games" class="game-image">
+                <img src="images/vr.jpg" alt="Video Games" class="game-image">
+            </div>
+            <p>The 1990s to the 2020s saw video games evolve into a dominant cultural and technological medium. Advances in hardware, the rise of 3D graphics, the internet, and groundbreaking franchises transformed gaming into a global industry.</p>
+            <ul>
+                <li><strong>1990s:</strong> The decade saw the transition to 3D graphics with consoles like the Sony PlayStation and Nintendo 64, while PC gaming thrived with titles like <i>Doom</i> and <i>Quake</i>.</li>
+                <li><strong>1994:</strong> The Entertainment Software Rating Board (ESRB) was established to create age-appropriate content ratings for video games.</li>
+                <li><strong>2000s:</strong> Online multiplayer became mainstream with the rise of broadband internet. Franchises like <i>World of Warcraft</i>, <i>Call of Duty</i>, and <i>Halo</i> became cultural phenomena.</li>
+                <li><strong>2006:</strong> The Nintendo Wii introduced motion-based gaming, expanding the gaming audience to casual players and families.</li>
+                <li><strong>2010s:</strong> Indie games like <i>Minecraft</i> and <i>Stardew Valley</i> thrived, while mobile gaming exploded with titles like <i>Angry Birds</i> and <i>Clash of Clans</i>.</li>
+                <li><strong>2017:</strong> Nintendo released the Switch, a hybrid console that became a commercial and critical success, revitalizing handheld gaming.</li>
+                <li><strong>2020s:</strong> Cloud gaming services like Google Stadia and Xbox Cloud Gaming allowed players to stream games without powerful hardware. Virtual reality (VR) and augmented reality (AR) technologies became more accessible to mainstream audiences.</li>
+                <li><strong>2020:</strong> The release of the PlayStation 5 and Xbox Series X/S introduced the next generation of gaming consoles, featuring ray tracing, ultra-fast SSDs, and immersive graphics.</li>
+            </ul>
+            <p>The modern era continues to push the boundaries of technology and creativity, offering players unprecedented levels of interactivity and immersion.</p>
+            <footer class = "section-footer">
+                <p>Sources: <a href="https://en.wikipedia.org/wiki/History_of_arcade_video_games" target="_blank">Modern Day</a></p>
+                <p>Return to the <a href="Prog03.html">Home Page</a> or explore <a href="favoritevg.html">My Favorite Games</a>.</p>
+            </footer>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 My Video Games Hobby Page</p>
+        <p><a href = #top>Return to Top</a>.</p>
+        <p>Connect with me: <a href="mailto:yourname@example.com">Email</a></p>
+    </footer>
+</body>
+</html>

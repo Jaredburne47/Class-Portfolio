@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Javascript Events</title>
+        <link rel="stylesheet" href="prog04.css">
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+        </script>
+    </head>
+    <body>
+        <nav>
+            <div id ="navbar"></div>
+        </nav>
+        <div class="container">
+            <h1>Event-Driven Programming</h1>
+            <div class="buttons">
+                <button id ="redbtn">RED</button>
+                <button id ="greenbtn">GREEN</button>
+                <button id ="bluebtn">BLUE</button>
+            </div>
+            <div class="counters">
+                <p id ="redCounter">RED count: 0</p>
+                <p id ="greenCounter">GREEN count: 0</p>
+                <p id ="blueCounter">BLUE count: 0</p>
+            </div>
+            <div class="hover-counters">
+                <p id ="redHover">Hover RED count: 0</p>
+                <p id ="greenHover">Hover GREEN count: 0</p>
+                <p id ="blueHover">Hover BLUE count: 0</p>
+            </div>
+        </div>
+        <script src="events.js"></script>
+    </body>
+</html>

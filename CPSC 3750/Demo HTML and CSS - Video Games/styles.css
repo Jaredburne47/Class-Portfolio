@@ -1,0 +1,198 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: lightblue; 
+}
+header {
+    background-color: #333;
+    color: white;
+    padding: 0.5em 0;
+    text-align: center;
+}
+
+
+main {
+    padding: 1em;
+}
+section {
+    margin-bottom: 2em;
+}
+aside {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5em;
+    margin: 1.5em 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+aside h2 {
+    font-size: 1.5rem;
+    color: #4b79a1;
+    margin-bottom: 1em;
+}
+
+aside p {
+    font-size: 0.9rem;
+    color: #333;
+    margin-bottom: 0.8em;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.section-footer {
+    margin-top: 1.5em;
+    font-size: 0.9rem; /* Slightly smaller text for the footer */
+    color: #bbb; /* Light gray for subtlety */
+    border-top: 1px solid #555; /* Subtle border to separate footer */
+    padding-top: 0.5em; /* Padding above footer text */
+    padding-left:5px;
+    text-align: left; /* Align the text to the left */
+    line-height: 1.6; /* Adjust line height for better spacing */
+}
+
+.section-footer a {
+    color: #4b79a1; /* Blue color for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold links for emphasis */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.section-footer a:hover {
+    color: #fff; /* Change color on hover */
+    text-decoration: underline; /* Add underline for hover */
+}
+h2 {
+    font-size: 2rem;
+}
+.image-gallery {
+    display: flex; /* Arrange images in a row */
+    gap: 15px; /* Space between images */
+    justify-content: center; /* Center the gallery horizontally */
+    flex-wrap: wrap; /* Wrap images to the next row if needed */
+}
+
+.game-image {
+    width: auto; /* Set a consistent size for all images */
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ccc; /* Add a light border */
+    border-radius: 8px; /* Optional: Rounded corners */
+    padding: 5px; /* Space between the image and its border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+    transition: transform 0.3s ease; /* Add a hover effect */
+}
+
+/* Game List Styling */
+.game-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 1.5em;
+}
+
+.game {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1em;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.game img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.game h3 {
+    font-size: 1.4rem;
+    color: #4b79a1;
+    margin-bottom: 0.5em;
+}
+
+.game p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.game:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== NAVBAR STYLES ===== */
+.navbar {
+    background-color: #333;
+    padding: 10px;
+    width:100%
+}
+
+/* Navbar links and buttons */
+.navbar a, .dropbtn {
+    color: white;
+    text-decoration: none;
+    padding: 14px 16px;
+    display: inline-block;
+    font-size: 16px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+/* Ensure dropdown works properly */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Make dropdown content visible on hover */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%; /* Ensures dropdown appears below the button */
+    left: 0;
+    background-color: #444;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 10; /* Ensure it appears above other elements */
+}
+
+/* Ensure dropdown expands properly */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Fix button spacing */
+.dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px 16px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Dropdown items */
+.dropdown-content a {
+    display: block;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+}
+
+/* Improve hover effect */
+.dropdown-content a:hover {
+    background-color: #555;
+}

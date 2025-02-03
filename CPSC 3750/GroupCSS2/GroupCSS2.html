@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang ="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Group CSS 2 Elements Demonstration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="group2styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+                fetch('navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading navbar:', error));
+            });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>CSS Elements Demonstration</h1>
+    </header>
+    <!-- NavBar -->
+    <nav>
+        <div id = "navbar"></div>
+    </nav>
+    <main>
+        <!-- Box Model -->
+        <section id ="box-model" class="content">
+            <h2>Box Model</h2>
+            <div class="box-example">
+                <p>This box demonstrates padding, border, and margin.</p>
+            </div>
+        </section>
+
+        <!-- Icons -->
+        <section id="icons" class="content">
+            <h2>Icons</h2>
+            <p><i class="fa fa-home"></i> Home Icon</p>
+            <p><i class="fa fa-phone"></i> Phone Icon</p>
+        </section>
+
+        <!-- Lists -->
+        <section id="lists" class="content">
+            <h2>Lists</h2>
+            <h3>Unordered List</h3>
+            <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+            </ul>
+            <h3>Ordered List</h3>
+            <ol>
+            <li>Step 1</li>
+            <li>Step 2</li>
+            <li>Step 3</li>
+            </ol>
+        </section>
+
+            <!-- Tables -->
+        <section id="tables" class="content">
+        <h2>Tables</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>City</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Jared</td>
+                <td>21</td>
+                <td>Clemson</td>
+            </tr>
+            <tr>
+                <td>Jordan</td>
+                <td>28</td>
+                <td>Charleston</td>
+            </tr>
+            </tbody>
+        </table>
+        <h3>Responsive Table</h3>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Category</th>
+          <th>Manufacturer</th>
+          <th>Warranty</th>
+          <th>Discount</th>
+          <th>Ratings</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Laptop</td>
+          <td>$800</td>
+          <td>10</td>
+          <td>Electronics</td>
+          <td>Brand A</td>
+          <td>2 years</td>
+          <td>10%</td>
+          <td>4.5</td>
+        </tr>
+        <tr>
+          <td>Phone</td>
+          <td>$500</td>
+          <td>25</td>
+          <td>Electronics</td>
+          <td>Brand B</td>
+          <td>1 year</td>
+          <td>15%</td>
+          <td>4.7</td>
+        </tr>
+        <tr>
+          <td>Headphones</td>
+          <td>$100</td>
+          <td>50</td>
+          <td>Accessories</td>
+          <td>Brand C</td>
+          <td>6 months</td>
+          <td>5%</td>
+          <td>4.2</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+        </section>
+
+            <!-- Image Gallery -->
+        <section id="image-gallery" class="content">
+            <h2>Image Gallery</h2>
+            <div class="gallery">
+            <img src="images/halo.jpg" alt="Halo">
+            <img src="images/consoles.jpg" alt="Video Game Consoles">
+            <img src="images/portal.jpg" alt="Portal">
+            </div>
+        </section>
+    
+        <!-- Float -->
+        <section id="float" class="content">
+            <h2>Float</h2>
+            <div class="float-example">
+            <div class="float-left">Float Left</div>
+            <div class="float-right">Float Right</div>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+        <p>&copy; Jared Burney 2025</p>
+      </footer>
+</body>
+</html>

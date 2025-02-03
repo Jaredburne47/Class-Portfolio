@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>January Calendar</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for 7 days of the week */
+  gap: 5px; /* Space between cells */
+  width: 80%;
+  max-width: 600px;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.day-name {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+}
+
+.day, .empty {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.day {
+  background: #e6f7ff;
+  font-weight: bold;
+}
+
+.day:hover {
+  background: #cceeff;
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+  <div class="calendar">
+    <!-- Days of the Week -->
+    <div class="day-name">Sun</div>
+    <div class="day-name">Mon</div>
+    <div class="day-name">Tue</div>
+    <div class="day-name">Wed</div>
+    <div class="day-name">Thu</div>
+    <div class="day-name">Fri</div>
+    <div class="day-name">Sat</div>
+
+    <!-- Days of January (Assume Jan 2025 starts on Wednesday) -->
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="day">1</div>
+    <div class="day">2</div>
+    <div class="day">3</div>
+    <div class="day">4</div>
+    <div class="day">5</div>
+    <div class="day">6</div>
+    <div class="day">7</div>
+    <div class="day">8</div>
+    <div class="day">9</div>
+    <div class="day">10</div>
+    <div class="day">11</div>
+    <div class="day">12</div>
+    <div class="day">13</div>
+    <div class="day">14</div>
+    <div class="day">15</div>
+    <div class="day">16</div>
+    <div class="day">17</div>
+    <div class="day">18</div>
+    <div class="day">19</div>
+    <div class="day">20</div>
+    <div class="day">21</div>
+    <div class="day">22</div>
+    <div class="day">23</div>
+    <div class="day">24</div>
+    <div class="day">25</div>
+    <div class="day">26</div>
+    <div class="day">27</div>
+    <div class="day">28</div>
+    <div class="day">29</div>
+    <div class="day">30</div>
+    <div class="day">31</div>
+  </div>
+</body>
+</html>
