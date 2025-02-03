@@ -1,0 +1,2 @@
+Used Postman for the yaml files and used AWS Lambda for the nodejs files and then used API Gateway to integrate them and make a 
+usable system that allowed the GET,POST,PATCH,DELETE for orders, notifications, and accounts in a company
