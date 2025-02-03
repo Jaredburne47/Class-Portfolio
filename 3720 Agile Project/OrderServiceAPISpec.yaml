@@ -1,0 +1,332 @@
+openapi: 3.0.0
+info:
+  title: Order Service API
+  version: 1.0.0
+  description: API for managing orders within the CUSports platform.
+servers:
+  - url: https://api.cusports.com/orders
+
+paths:
+  ### Order Types Endpoints ###
+
+  # Endpoint for managing orders
+  /orders:
+    
+    # Endpoint for retrieving a list of orders
+    get:
+      summary: Retrieve a list of orders
+      description: Returns a list of orders, optionally filtered by account ID or order status.
+      parameters:
+        - name: accountId
+          in: query
+          description: The ID of the account to filter orders by.
+          required: false
+          schema:
+            type: string
+        - name: orderStatus
+          in: query
+          description: Filter orders by status (e.g., pending, shipped, delivered).
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the list of orders.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+    
+    # Endpoint for creating a new order
+    post:
+      summary: Create a new order
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '201':
+          description: Order created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  /orders/{orderId}:
+
+    # Endpoint for retrieving a specific order by ID.
+    get:
+      summary: Retrieve a specific order by ID
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order details retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+    
+    # Endpoint for updating an order
+    patch:
+      summary: Update an order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '200':
+          description: Order updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+    
+    # Endpoint for canceling an order
+    delete:
+      summary: Cancel an order
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order canceled successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Order canceled successfully.
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  /orders/{orderId}/status:
+
+    # Endpoint for updating the status of an order
+    patch:
+      summary: Update the status of an order
+      description: Update the status of an order and trigger notifications to the user.
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                orderStatus:
+                  type: string
+                  description: New status of the order (e.g., "Preparing order").
+                  example: "Ready for shipper"
+      responses:
+        '200':
+          description: Successfully updated order status and triggered notifications.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Order status updated successfully.
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+
+
+
+# ---------API Components Information---------
+# Contains all reusable parameters, responses, and schemas for the Accounts API
+components:
+
+  # ---------API Schemas Information---------
+  schemas:
+    # Schema for an order object in the system.
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+          description: Unique identifier for the order.
+        accountId:
+          type: string
+          description: ID of the account associated with the order.
+        items:
+          type: array
+          description: List of items in the order.
+          items:
+            type: object
+            properties:
+              itemId:
+                type: string
+                description: Unique identifier for the item.
+              name:
+                type: string
+                description: Name of the item.
+              quantity:
+                type: integer
+                description: Quantity of the item ordered.
+              price:
+                type: number
+                format: float
+                description: Price of the individual item.
+        orderStatus:
+          type: string
+          description: Current status of the order (e.g., pending, shipped, delivered).
+        totalPrice:
+          type: number
+          format: float
+          description: Total price of the order.
+        dateCreated:
+          type: string
+          format: date-time
+          description: Date and time the order was created.
+        dateUpdated:
+          type: string
+          format: date-time
+          description: Date and time the order was last updated.
+        dateStatusUpdated:
+          type: string
+          format: date-time
+          description: Date and time the order status was last updated.
+
+    # Schema for creating a new order input from customers.
+    OrderInput:
+      type: object
+      required:
+        - accountId
+        - items
+      properties:
+        accountId:
+          type: string
+          description: ID of the account placing the order.
+        items:
+          type: array
+          description: List of items in the order.
+          items:
+            type: object
+            properties:
+              itemId:
+                type: string
+                description: Unique identifier for the item.
+              name:
+                type: string
+                description: Name of the item.
+              quantity:
+                type: integer
+                description: Quantity of the item ordered.
+              price:
+                type: number
+                format: float
+                description: Price of the individual item.
+        orderStatus:
+          type: string
+          description: Initial status of the order
+
+  # ---------API Responses Information---------
+  responses:
+    # A schema for general 200 error code information
+    200Error:
+      description: 200 Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A sent request has been successful
+                type: string
+                example: "200 Request successfully sent"
+    # A schema for general 201 error code information
+    201Error:
+      description: 201 Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A human readable message to make sure 201 is created
+                type: string
+                example: "201 Created"
+    # A schema for general 400 error code information
+    400Error:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Invalid request data.
+    # A schema for general 404 error code information
+    404Error:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Resource not found.
+    # A schema for general 500 error code information
+    500Error:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: An unexpected server error occurred.

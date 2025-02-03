@@ -1,0 +1,736 @@
+# Account Services API
+#
+#
+# Description: This API includes the header API information, the Server information,
+#              the user account paths, the user account components such as parameters,
+#              responses, and schema's. This API also includes user accounts and their
+#              properties.
+#
+# Purpose: This API allows the various website users to create accounts, login
+#          into https://www.cusports.com and search/adjust various settings.
+#          It is also used by the CUSports admin to manage account information.
+
+
+# ---------General API Information---------
+openapi: '3.0.0'
+info:
+  version: '1.0.0'
+  title: 'Account Services API'
+  description: Account Services API
+
+# ---------API Server Information---------
+servers:
+  - url: https://www.cusports.com/api
+
+# ---------API Paths Information---------
+paths:
+  # Users can be customers, business users, customer service reps, admin, or other employees; personal information is also stored
+  /accounts:
+
+    # Get all user accounts
+    get:
+      description: Returns a list of user accounts and filter by specific parameters such as
+                   PageLimit
+                   PageOffset...
+      parameters:
+        - $ref: '#/components/parameters/PageLimit'
+        - $ref: '#/components/parameters/PageOffset'
+
+      # Responses to getting the list of all users
+      responses:
+        '200':
+          description: Retrieved the list of all user accounts successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/account'
+        '400':
+          description: Did not reach the server successfully
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+    # Creates a user account with user entered properties; assigns user with an id
+    post:
+      description: Allows you to add a new account or accounts to the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/account'
+
+      # Responses to creating a particular users
+      responses:
+        '200':
+          description: Successfully added a new user account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account'
+        '201':
+          $ref: '#/components/responses/201Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+  
+  # Creates an employee and busness acounts account with user entered properties; assigns user with an id
+  /account/add_employee:
+    post:
+      description: Allows you to add a new business or employee account or accounts to the system
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/employeeAccount'
+
+      # Responses to creating a particular users
+      responses:
+        '200':
+          description: Successfully added a new Employee/Business account
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/200Error'
+        '201':
+          $ref: '#/components/responses/201Error'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+  
+
+  # Login path for a guest user that does not need email or password
+  /account/login/guest:
+    patch:
+      description: Login a user as a guest to the CUSports Website
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/guestLoginCredentials'
+      responses:
+        '200':
+          description: Guest login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Guest login successful"
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  # Login path for a registered user with an email and password
+  /account/login/registered:
+    patch:
+      description: Login a user as a registered user to the CUSports Website
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/registeredLoginCredentials'
+      responses:
+        '200':
+          description: Registered login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Registered login successful"
+        '400':
+          $ref: '#/components/responses/400Error'
+        '403':
+          description: Incorrect password for registered login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Password is incorrect"
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+  
+  # User's id path that allows users to fetch or edit a particular user account
+  /account/{id}:
+    parameters:
+      - name: id
+        description: The unique identifier of a user
+        in: path
+        required: true
+        schema:
+          type: string
+
+    # Retrieve the information for a user by id
+    get:
+      description: Retrieve a specific user by an id
+
+      # Responses to retrieving a particular user
+      responses:
+        '200':
+          description: Sucessfully returned The user corresponding to the provided id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/account'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+    # Permanently deletes a user emplyee or busness user
+    delete:
+      summary: "Delete user account"
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      security:
+        - bearerAuth: []  
+      responses:
+        '200':
+          description: "Account successfully deleted"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string                    
+                    example: "Account successfully deleted."
+        '400':
+          description: "Missing confirmation"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: integer
+                        example: 400
+                      message:
+                        type: string
+                        example: "Deletion not confirmed. Please confirm deletion before proceeding."
+        '401':
+          $ref: '#/components/responses/401Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+ # logs out the user and sets the active status to false and writes when was last active
+  /account/{id}/logout:
+    patch:
+      parameters: 
+        - $ref: '#/components/schemas/employee_account'
+        - $ref: '#/components/schemas/account'
+      description: Logs the user out and updates the users timestamp of when last active.
+      responses:
+        '200':
+          description: Successfully logged the user out.
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  active: false
+                  lastActive: "11-6-2024@4:39PM(EST)"
+        '400':
+          $ref: '#/components/responses/400Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+  # Confirm account deletion path for a user
+  /account/{id}/delete-confirmation:
+      post:
+        summary: "Confirm account deletion"
+        parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  confirm:
+                    type: boolean
+                    example: true
+        responses:
+          '200':
+            description: "Deletion confirmed"
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      example: "Account deletion confirmed. Please proceed to DELETE /account/{id} to complete the process."
+          '500':
+                $ref: '#/components/responses/500Error'
+          '400':
+                $ref: '#/components/responses/400Error'
+            
+# User preferences path for creating and retrieving preferences
+  /account/{id}/userPreferences:
+    parameters:
+      - name: id
+        description: The unique identifer of a user
+        in: path
+        required: true
+        schema:
+          type: string
+  # Retrieve user preferences for a specific user by id
+    get:
+      description: Retrieve user preferences for a specific user
+      responses:
+        '200':
+          description: Successfully retrieved user preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userPreferences'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+  #Create or update user preferences for a specific user
+    post:
+      description: Set or update preferences for a specific user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/userPreferences'
+      responses:
+        '200':
+          description: Successfully set or update user preferences
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userPreferences'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+  #Delete user preferences for a specific user
+    delete:
+      description: Delete/Reset preferences for a specific user to default settings
+      responses:
+        '200':
+          description: Successfully reset user preferences to default settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userPreferences'
+                example:
+                  language: "en"
+                  address:
+                    street: ""
+                    state: ""
+                    city: ""
+                    zipCode: ""
+                  notifications:
+                    email: true
+                    sms: false
+                    push: true
+                  payment:
+                    type: ""
+                    cardNumber: ""
+                    expiration: ""
+                    cardholderName: ""
+                    billingAddress: ""
+        '400':
+          $ref: '#/components/responses/400Error'
+        '404':
+          description: User preferences not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User preferences not found"
+        '500':
+          $ref: '#/components/responses/500Error'
+  # Update the user's preferences.
+    put:
+      description: Update the preferences for a specific user.
+      responses:
+        '200':
+          description: Successfully reset user preferences to default settings
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/userPreferences'
+                example:
+                  language: "en"
+                  address:
+                    street: ""
+                    state: ""
+                    city: ""
+                    zipCode: ""
+                  notifications:
+                    email: true
+                    sms: false
+                    push: true
+                  payment:
+                    type: ""
+                    cardNumber: ""
+                    expiration: ""
+                    cardholderName: ""
+                    billingAddress: ""
+        '204':
+          description: Empty JSON passed through API.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "No content provided"
+        '400':
+          $ref: '#/components/responses/400Error'
+        '404':
+          description: User preferences not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "User preferences not found"
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  # Password update path for updating a user's password
+  /account/{id}/password:
+    parameters:
+      - name: id
+        description: The unique identifier of a user
+        in: path
+        required: true
+        schema:
+          type: string
+
+    patch:
+      description: Allows a registered user to update their password
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentPassword:
+                  type: string
+                  description: The user's current password for verification
+                newPassword:
+                  type: string
+                  description: The new password the user wants to set
+              required:
+                - currentPassword
+                - newPassword
+
+      # Responses for updating password
+      responses:
+        '200':
+          description: Password successfully updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Password updated successfully"
+        '400':
+          description: Invalid data or new password does not meet requirements
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Invalid request or password does not meet criteria"
+        '403':
+          description: Current password is incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Current password is incorrect"
+        '500':
+          $ref: '#/components/responses/500Error'
+
+
+
+
+
+
+# ---------API Components Information---------
+# Contains all reusable parameters, responses, and schemas for the Accounts API
+components:
+
+  # ---------Parameters---------
+  parameters:
+
+    # Helps set the limit of user accounts on a single page
+    PageLimit:
+      name: limit
+      in: query
+      description: Limits the number of items on a page
+      schema:
+        type: integer
+
+    # Helps to select which page of user accounts to be displayed
+    PageOffset:
+      name: offset
+      in: query
+      description: Specifies the page number of the user accounts to be displayed
+      schema:
+        type: integer
+
+
+  # ---------API Responses Information---------
+  responses:
+
+    # A schema for general 200 error code information
+    200Error:
+      description: 200 Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A sent request has been successful
+                type: string
+                example: "200 Request successfully sent"
+    # A schema for general 201 error code information
+    201Error:
+      description: 201 Created
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A human readable message to make sure 201 is created
+                type: string
+                example: "201 Created"
+
+    # A schema for general 400 error code information
+    400Error:
+      description: Invalid Client Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A human readable error message
+                type: string
+                example: "An unexpected Client Error occurred"
+
+    # A schema for general 401 error code information
+    401Error:
+      description: Unauthorized Access
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A human readable error message
+                type: string
+                example: "Unauthorized access"
+
+    # A schema for general 404 error code information
+    404Error:
+      description: Resource Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A human readable error message indicating the resource was not found
+                type: string
+                example: "The requested resource was not found"
+
+    # A schema for general 500 error code information
+    500Error:
+      description: Unexpected Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                description: A human readable error message
+                type: string
+                example: "An unexpected server error occurred"
+
+  # ---------API Schemas Information---------
+  schemas:
+
+    # Schema for guest login
+    guestLoginCredentials:
+      description: Credentials for guest login
+      type: object
+      required:
+        - loginType
+      properties:
+        loginType:
+          type: string
+          enum: ["guest"]
+
+    # Schema for registered login
+    registeredLoginCredentials:
+      description: Credentials for registered user login
+      type: object
+      required:
+        - loginType
+        - email
+        - password
+      properties:
+        loginType:
+          type: string
+          enum: ["registered"]
+        email:
+          type: string
+        password:
+          type: string
+
+    # User Preferences schema to be re-used throughout the API
+    userPreferences:
+      description: represents the preferences that a user may have
+      type: object
+      required:
+        - language
+      properties:
+        language:
+          type: string
+          description: Preferred language of the user
+        notifications:
+          type: object
+          properties:
+            email:
+              type: boolean
+              description: Enable email notifications
+            sms:
+              type: boolean
+              description: Enable SMS notifications
+            push:
+              type: boolean
+              description: Enable push notifications
+    # User account schema to be re-used throughout the API
+    account:
+      description: A single user account for the CUSports application
+      type: object
+      required:
+        - id
+        - name
+
+      properties:
+        # Unique ID for a given user
+        id:
+          type: string
+        name:
+          type: string
+        # Login information.
+        email:
+          type: string
+        password:
+          type: string
+        # The last recorded user activity
+        lastActive:
+          type: string
+        # Whether or not the user is active.
+        active:
+          type: boolean
+    
+    # Employee and busness account schema to be re-used throughout the API
+    employeeAccount:
+      description: account type for business, CSR, Wearhouse, fulfillment emplyees.
+      type: object
+      required:
+        # inhertes the account object
+        - id
+        - name
+        - job_position
+        - department
+      properties:
+        id:
+          type: string
+        name: 
+          type: string
+        # Login information.
+        email:
+          type: string
+        password:
+          type: string
+        # List the emplyees acoount's job position
+        job_position:
+          type: string
+        # Lists the current employee's department
+        department:
+          type: string
+        # The last recorded user activity
+        lastActive:
+          type: string
+        # Whether or not the user is active.
+        active:
+          type: boolean
+
+  # ---------API SecuritySchemes Information NOT NEEDED FOR 3720---------
+  #securitySchemes:
+  #  ApiKey:
+  #    type: apiKey
+  #    in: header
+  #    name: X-Api-Key
+
+# ---------API Security Information  NOT NEEDED FOR 3720---------
+#security:
+#  - ApiKey: []

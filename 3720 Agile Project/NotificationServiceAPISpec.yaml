@@ -1,0 +1,375 @@
+openapi: 3.0.0
+info:
+  title: Notifications Service API
+  description: API for managing notifications and notification types on the CUSports platform.
+  version: 1.0.0
+
+servers:
+  - url: https://api.cusports.com/notifications
+
+paths:
+  ### Notification Types Endpoints ###
+  
+  # Endpoint for managing notification types (CRUD operations for NotificationTypesTable)
+  /notification-types:
+    get:
+      summary: Get all notification types
+      description: Retrieve all notification types (e.g., Order Status Update, Customer Support Ticket Update)
+      responses:
+        '200':
+          description: List of all notification types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationType'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+    post:
+      summary: Add a new notification type
+      description: Allows an admin to create a new notification type.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationTypeInput'
+      responses:
+        '201':
+          description: Notification type created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationType'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  /notification-types/{typeId}:
+    parameters:
+      - in: path
+        name: typeId
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for the notification type
+
+    get:
+      summary: Get a specific notification type
+      description: Retrieve details of a specific notification type by its ID.
+      responses:
+        '200':
+          description: Notification type details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationType'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+    delete:
+      summary: Delete a specific notification type
+      description: Removes a notification type by its ID.
+      responses:
+        '200':
+          description: Notification type deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Notification type deleted successfully."
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  ### Notifications Endpoints ###
+  
+  /notifications:
+    get:
+      summary: Get all notifications for a user
+      parameters:
+        - in: query
+          name: userId
+          required: true
+          schema:
+            type: string
+          description: ID of the user to retrieve notifications for
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 20
+          description: Number of notifications to retrieve per page
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            default: 0
+          description: The starting point for pagination
+        - in: query
+          name: typeId
+          schema:
+            type: string
+          description: Filter notifications by typeId (e.g., OrderStatusUpdate ID)
+      responses:
+        '200':
+          description: List of notifications retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+    post:
+      summary: Create a new notification for a user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationInput'
+      responses:
+        '201':
+          description: Notification created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+  /notifications/{notificationId}:
+    parameters:
+      - in: path
+        name: notificationId
+        required: true
+        schema:
+          type: string
+        description: Unique identifier for the notification instance
+
+    get:
+      summary: Get a specific notification by ID
+      responses:
+        '200':
+          description: Notification details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+
+    delete:
+      summary: Delete a specific notification
+      responses:
+        '200':
+          description: Notification deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Notification deleted successfully."
+        '404':
+          $ref: '#/components/responses/404Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+          
+  /notifications/history:
+      get:
+        summary: Retrieve notification history
+        description: Retrieve the history of notifications sent.
+        parameters:
+          - name: userId
+            in: query
+            required: false
+            schema:
+              type: string
+            description: Filter notification history by user ID.
+          - name: typeId
+            in: query
+            required: false
+            schema:
+              type: string
+            description: Filter notification history by notification type ID.
+          - name: limit
+            in: query
+            required: false
+            schema:
+              type: integer
+            description: Number of records to retrieve per page.
+          - name: offset
+            in: query
+            required: false
+            schema:
+              type: integer
+            description: Starting point for pagination.
+        responses:
+          '200':
+            description: Successfully retrieved notification history.
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/NotificationHistory'
+          '400':
+            $ref: '#/components/responses/400Error'
+          '500':
+            $ref: '#/components/responses/500Error'
+components:
+  responses:
+    400Error:
+      description: Invalid request data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Invalid request data."
+
+    404Error:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "Resource not found."
+
+    500Error:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: "An unexpected server error occurred."
+    
+
+  schemas:
+    NotificationType:
+      type: object
+      properties:
+        typeId:
+          type: string
+          description: Unique identifier for the notification type
+        name:
+          type: string
+          description: Name of the notification type (e.g., Order Status Update)
+        description:
+          type: string
+          description: Description of the notification type
+
+    NotificationTypeInput:
+      type: object
+      properties:
+        typeId:
+          type: string
+          description: Unique identifier for the notification type (Primary Key for NotificationTypesTable)
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - typeId
+        - name
+        - description
+
+    Notification:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: Unique identifier for the notification
+        userId:
+          type: string
+          description: ID of the user receiving the notification
+        typeId:
+          type: string
+          description: Reference to the notification type ID in NotificationTypesTable
+        content:
+          type: string
+          description: Content of the notification message
+        isRead:
+          type: boolean
+          description: Indicates if the notification has been read
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the notification was created
+    NotificationHistory:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: Unique identifier for the notification.
+        userId:
+          type: string
+          description: ID of the user receiving the notification.
+        typeId:
+          type: string
+          description: Reference to the notification type ID.
+        contactMethod:
+          type: string
+          enum:
+            - email
+            - text
+          description: Method of contact used to send the notification.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp of when the notification was sent.
+    
+    NotificationInput:
+      type: object
+      properties:
+        notificationId:
+          type: string
+          description: Unique identifier for the notification (Primary Key for NotificationTable)
+        userId:
+          type: string
+          description: ID of the user receiving the notification
+        typeId:
+          type: string
+          description: Type ID referencing the notification type
+        content:
+          type: string
+          description: Content of the notification message
+      required:
+        - notificationId
+        - userId
+        - typeId
+        - content
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

@@ -1,0 +1,73 @@
+NotificationTable {
+  Partition Key: notificationId
+  Attributes:
+  {
+    notificationId (String): Unique identifier for the notification instance.
+    userId (String): The ID of the user receiving the notification.
+    typeId (String): Reference to the id of the notification type in NotificationTypeTable.
+    content (String): The content of the notification message.
+    isRead (Boolean): Status indicating whether the notification has been read by the user.
+    createdAt (String, ISO-8601 format): Timestamp of when the notification was created.
+  }
+}
+
+NotificationTypesTable {
+  Partition Key: typeId
+  Attributes: {
+    typeId(String): Unique identifier for the type of notification instance.
+    name: {e.g. Order status updates, customer support ticket status, password change, payment status}
+    Description(String): Description of the notification type.
+  }
+  
+}
+
+AccountServicesTable {
+Partition Key: accountId
+Attributes: {
+  - id (String): Unique identifier for the account (primary key).
+  - accountType (String): Type of account (`User` or `Employee`).
+  - name (String): Name of the account holder.
+  - email (String): Email address for user authentication (applicable for registered user accounts).
+  - passwordHash (String): Hashed password for user accounts.
+  - jobPosition (String): Job position of the employee (applicable for employee accounts).
+  - department (String): Department to which the employee belongs (applicable for employee accounts).
+  - lastActive (String, ISO-8601 format): Timestamp of the last activity.
+  - active (Boolean): Indicates if the account is currently active.
+  - preferences (Map): A map containing user preferences, with nested attributes:
+    - language (String): Preferred language of the account holder.
+    - notifications (Map): Notification preferences for the account holder.
+      - email (Boolean): Enable email notifications.
+      - sms (Boolean): Enable SMS notifications.
+      - push (Boolean): Enable push notifications.
+    - payment (Map): Payment information for the user.
+      - type (String): Type of payment method (e.g., `credit`).
+      - cardNumber (String): Last four digits of the payment card.
+      - expiration (String): Expiration date of the payment card.
+      - cardholderName (String): Name on the payment card.
+      - billingAddress (String): Billing address for the payment card.
+    - address (Map): Address information for the account holder.
+      - street (String): Street address.
+      - city (String): City.
+      - state (String): State.
+      - zipCode (String): ZIP or postal code.
+  }
+}
+OrderTable {
+  Partition Key: orderId
+  Sort Key: accountId (optional, for querying orders by account)
+  Attributes:
+  {
+    orderId (String): Unique identifier for the order.
+    accountId (String): ID of the account associated with the order.
+    items (List): List of items in the order.
+      - itemId (String): Unique identifier for the item.
+      - name (String): Name of the item.
+      - quantity (Integer): Quantity of the item ordered.
+      - price (Number): Price of the individual item.
+    totalPrice (Number): Total price of the order.
+    status (String): Current status of the order (e.g., pending, shipped, delivered).
+    dateCreated (String, ISO-8601 format): Timestamp when the order was created.
+    lastUpdated (String, ISO-8601 format): Timestamp of the last update to the order.
+  }
+}
+
